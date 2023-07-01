@@ -1,0 +1,14 @@
+.card__skeleton {
+  width: 12rem;
+  height: 10rem;
+  margin-block: 10px;
+  border-radius: 20px;
+}
+.card-skeleton__container {
+  flex-direction: column;
+  padding-block: 16px;
+  align-items: center;
+}
+.card-skeleton__item {
+  --background: transparent;
+}
