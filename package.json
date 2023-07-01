@@ -93,6 +93,9 @@
     "extends": [
       "react-app",
       "react-app/jest"
+    ],
+    "ignorePatterns": [
+      "/android/**"
     ]
   }
 }
