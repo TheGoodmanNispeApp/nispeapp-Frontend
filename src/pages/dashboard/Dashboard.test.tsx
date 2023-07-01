@@ -51,40 +51,38 @@ describe('Given a Dashboard page component,', () => {
       telemetryTextItemsBefore = screen.getAllByRole('telemetry-text');
     });
 
-    await waitFor(() => {
-      server.use(
-        rest.get(
-          `${process.env.REACT_APP_API_URL}/api/v1/plants/nispe`,
-          (_req, res, ctx) => {
-            return res(
-              ctx.status(200),
-              ctx.json([
-                {
-                  measurements: {
-                    temperature: 31.200001,
-                    humidity: 28.299999,
-                    light: 1349,
-                  },
-                  _id: '649de050e4f7b85906e86015',
-                  timestamp: 1688068174,
+    server.use(
+      rest.get(
+        `${process.env.REACT_APP_API_URL}/api/v1/plants/nispe`,
+        (_req, res, ctx) => {
+          return res(
+            ctx.status(200),
+            ctx.json([
+              {
+                measurements: {
+                  temperature: 31.200001,
+                  humidity: 28.299999,
+                  light: 1349,
                 },
-                {
-                  measurements: {
-                    temperature: 20.200001,
-                    humidity: 15.299999,
-                    light: 1234,
-                  },
-                  _id: '649de08de4f7b85906e86017',
-                  timestamp: 1688068236,
+                _id: '649de050e4f7b85906e86015',
+                timestamp: 1688068174,
+              },
+              {
+                measurements: {
+                  temperature: 20.200001,
+                  humidity: 15.299999,
+                  light: 1234,
                 },
-              ]),
-            );
-          },
-        ),
-      );
-      const icon = screen.getByRole('icon');
-      userEvent.click(icon);
-    });
+                _id: '649de08de4f7b85906e86017',
+                timestamp: 1688068236,
+              },
+            ]),
+          );
+        },
+      ),
+    );
+    const icon = screen.getByRole('icon');
+    userEvent.click(icon);
 
     await waitFor(() => {
       const telemetryTextItems = screen.getAllByRole('telemetry-text');

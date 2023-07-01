@@ -32,7 +32,7 @@ describe('Given a telemetry list component,', () => {
     await waitFor(() => {
       const listItem = screen.getAllByRole('card');
       expect(listItem.length).toBe(3);
-      expect(useSelectorMock).toHaveBeenCalled();
     });
+    expect(useSelectorMock).toHaveBeenCalled();
   });
 });
