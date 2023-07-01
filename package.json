@@ -95,7 +95,7 @@
       "react-app/jest"
     ],
     "ignorePatterns": [
-      "/android/**"
+      "android/"
     ]
   }
 }
