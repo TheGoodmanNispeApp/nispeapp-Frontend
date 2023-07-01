@@ -1,0 +1,35 @@
+.dashboard__icon {
+  font-size: 82px;
+}
+
+.icon__light {
+  color: #dcdc50;
+}
+.icon__humidity {
+  color: #a0c1ef;
+}
+.icon__temperature {
+  color: #c47d7d;
+}
+
+.dashboard__card {
+  width: 12rem;
+  height: 10rem;
+  border-radius: 20px;
+}
+
+.dashboard-card__humidity {
+  --background: #4c83cdbf;
+}
+.dashboard-card__temperature {
+  --background: #733333d6;
+}
+.dashboard-card__light {
+  --background: #ba882ed1;
+}
+
+.value__text {
+  font-size: 20px;
+  font-weight: 900;
+  color: var(--ion-color-step-850, #262626);
+}
