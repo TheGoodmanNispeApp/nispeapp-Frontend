@@ -12,3 +12,10 @@
 .card-skeleton__item {
   --background: transparent;
 }
+
+.text__skeleton {
+  min-width: 5rem;
+  min-height: 2rem;
+  margin-block: 10px;
+  border-radius: 8px;
+}

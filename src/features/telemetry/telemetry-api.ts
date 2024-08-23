@@ -10,3 +10,16 @@ export const getTelemetry = async () => {
 
   return response;
 };
+
+export const getLatestTelemetry = async () => {
+  const response = await fetch(
+    `${process.env.REACT_APP_API_URL}/api/v1/plants/nispe/latest`,
+    {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    },
+  );
+
+  return response;
+};

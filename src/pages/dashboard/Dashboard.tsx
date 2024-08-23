@@ -1,12 +1,20 @@
-import { IonContent, IonIcon, IonPage, IonRow, IonText } from '@ionic/react';
+import {
+  IonContent,
+  IonIcon,
+  IonPage,
+  IonRow,
+  IonSkeletonText,
+  IonText,
+} from '@ionic/react';
 import * as icons from 'ionicons/icons';
 import React, { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
+import TimeRangeInterval from '../../features/shared/time-range-interval/TimeRangeInterval';
 import TelemetryCardList from '../../features/telemetry/components/TelemetryCardList';
 import TelemetrySkeleton from '../../features/telemetry/components/TelemetrySkeletonList';
 import {
-  getTelemetryAsync,
-  selectLatetTelemetry,
+  getLatestTelemetryAsync,
+  selectLatestTelemetry,
   telemetryState,
 } from '../../features/telemetry/telemetry-slice';
 
@@ -15,20 +23,20 @@ const Dashboard: React.FC = () => {
   const { status, telemetryMessage } = telemetryListState;
 
   const dispatch = useAppDispatch();
-  const latestTelemetry = useAppSelector(selectLatetTelemetry);
+  const latestTelemetry = useAppSelector(selectLatestTelemetry);
 
   useEffect(() => {
-    dispatch(getTelemetryAsync());
+    dispatch(getLatestTelemetryAsync());
   }, [dispatch]);
 
   const handleClick = () => {
-    dispatch(getTelemetryAsync());
+    dispatch(getLatestTelemetryAsync());
   };
 
   const generateTelemetryList = () => {
     switch (status) {
       case 'loading':
-        return <TelemetrySkeleton></TelemetrySkeleton>;
+        return <TelemetrySkeleton count={3}></TelemetrySkeleton>;
       case 'failed':
         return <p role="error-message">{telemetryMessage}</p>;
       default:
@@ -43,7 +51,14 @@ const Dashboard: React.FC = () => {
         <IonRow class="ion-justify-content-center ion-align-items-center ion-padding-bottom">
           <IonText>
             Last Update:{' '}
-            {new Date(latestTelemetry?.timestamp * 1000).toLocaleString('es')}
+            {latestTelemetry ? (
+              new Date(latestTelemetry!.timestamp * 1000).toLocaleString('es')
+            ) : (
+              <IonSkeletonText
+                className="text__skeleton"
+                animated
+              ></IonSkeletonText>
+            )}
           </IonText>
           <IonIcon
             role="icon"
@@ -53,6 +68,7 @@ const Dashboard: React.FC = () => {
             size="large"
           ></IonIcon>
         </IonRow>
+        <TimeRangeInterval></TimeRangeInterval>
       </IonContent>
     </IonPage>
   );

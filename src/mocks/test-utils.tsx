@@ -16,6 +16,8 @@ export const renderWithProviders = (
       telemetry: {
         status: 'idle',
         telemetry: [],
+        historicalTelemetry: [],
+        latestTelemetry: null,
         telemetryMessage: '',
       },
     },
